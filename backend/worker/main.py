@@ -10,9 +10,9 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 
 try:
-    from avantime_rat_tracer import render_tile
+    from avantime_ray_tracer import render_tile
 except ImportError:
-    logging.error("Could not import avantime_rat_tracer. Make sure you are running from the correct directory or have installed the package.")
+    logging.error("Could not import avantime_ray_tracer. Make sure you are running from the correct directory or have installed the package.")
     sys.exit(1)
 
 logging.basicConfig(level=logging.INFO)
