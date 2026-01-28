@@ -1,5 +1,5 @@
 import pytest
-from avantime_rat_tracer.core import render_scene
+from avantime_ray_tracer.core import render_scene
 import jax.numpy as jnp
 
 def test_render_scene_structure():

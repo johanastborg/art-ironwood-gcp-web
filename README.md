@@ -1,4 +1,4 @@
-# Avantime Rat Tracer 🐀✨
+# Avantime Ray Tracer 🐀✨
 
 **The Ultra-Optimized, Ironwood-Native Path Tracer.**
 
@@ -9,9 +9,9 @@
 
 ## Overview
 
-**Avantime Rat Tracer** represents the pinnacle of rendering performance on the **Ironwood** platform. This isn't just a ray tracer; it's a fully-featured **path tracer** engine meticulously ported to leverage the raw power of Ironwood.
+**Avantime Ray Tracer** represents the pinnacle of rendering performance on the **Ironwood** platform. This isn't just a ray tracer; it's a fully-featured **path tracer** engine meticulously ported to leverage the raw power of Ironwood.
 
-Built on the shoulders of **JAX**, Avantime Rat Tracer exploits XLA (Accelerated Linear Algebra) to deliver lightning-fast differentiable rendering and massive parallelism. When Python isn't enough, we drop down to the metal with **C++98 FFI extensions**, ensuring that even legacy-constrained environments on Ironwood churn out pixels at blistering speeds.
+Built on the shoulders of **JAX**, Avantime Ray Tracer exploits XLA (Accelerated Linear Algebra) to deliver lightning-fast differentiable rendering and massive parallelism. When Python isn't enough, we drop down to the metal with **C++98 FFI extensions**, ensuring that even legacy-constrained environments on Ironwood churn out pixels at blistering speeds.
 
 ## Key Features
 
@@ -40,7 +40,7 @@ pip install avantime-rat-tracer
 
 ```python
 import jax.numpy as jnp
-from avantime_rat_tracer import render_scene
+from avantime_ray_tracer import render_scene
 
 # Define your scene
 scene = {

@@ -6,7 +6,17 @@ export default function Home() {
   const [rendering, setRendering] = useState(false);
   const [resultImage, setResultImage] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [sceneObjects, setSceneObjects] = useState<any[]>([]);
+  // Default to a set of objects if we want to visualize them, though backend has them hardcoded for now
+  // based on the instruction "basic scene... hardcoded" essentially since I modified core.py to use fixed scene.
+  // But let's keep the sceneObjects state to show we *can* edit, even if backend ignores it currently
+  // (the updated core.py hardcoded spheres).
+  // Ideally, I should pass sceneObjects to backend and backend parses it.
+  // But for "Basic Scene", hardcoding in JAX is faster/cleaner for now as requested.
+  const [sceneObjects, setSceneObjects] = useState<any[]>([
+      { type: "sphere", x: 200, y: 300, color: "#f00" },
+      { type: "sphere", x: 400, y: 300, color: "#0f0" },
+      { type: "sphere", x: 600, y: 300, color: "#00f" }
+  ]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -32,11 +42,15 @@ export default function Home() {
             ctx.stroke();
         }
 
+        // Draw Checkerboard Floor hint
+        ctx.fillStyle = "#222";
+        ctx.fillRect(0, 300, 800, 300);
+
         // Draw objects
-        ctx.fillStyle = "#4f9";
         sceneObjects.forEach(obj => {
+           ctx.fillStyle = obj.color || "#fff";
            ctx.beginPath();
-           ctx.arc(obj.x, obj.y, 20, 0, 2 * Math.PI);
+           ctx.arc(obj.x, obj.y, 40, 0, 2 * Math.PI);
            ctx.fill();
         });
       }
@@ -48,7 +62,7 @@ export default function Home() {
       if (rect) {
           const x = e.clientX - rect.left;
           const y = e.clientY - rect.top;
-          setSceneObjects([...sceneObjects, { type: "sphere", x, y, radius: 20 }]);
+          setSceneObjects([...sceneObjects, { type: "sphere", x, y, radius: 20, color: "#fff" }]);
       }
   };
 
@@ -126,7 +140,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-8 bg-zinc-900 text-white font-sans">
-      <h1 className="text-4xl font-bold mb-8">Art Ironwood: Distributed Renderer</h1>
+      <h1 className="text-4xl font-bold mb-8">Avantime Ray Tracer</h1>
 
       <div className="flex gap-8">
         <div className="flex flex-col gap-4">
@@ -138,7 +152,7 @@ export default function Home() {
             className="border border-zinc-700 cursor-crosshair bg-black"
             onClick={handleCanvasClick}
           />
-          <p className="text-zinc-400 text-sm">Click to add objects</p>
+          <p className="text-zinc-400 text-sm">Click to add objects (visualization only, backend uses hardcoded scene for now)</p>
         </div>
 
         <div className="flex flex-col gap-4">
